@@ -31,7 +31,8 @@ let resolveToComponents = (glob = '') => {
 // map of all paths
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
-  styl: resolveToApp('**/*.styl'), // stylesheets
+  //styl: resolveToApp('**/*.styl'), // stylesheets
+  scss: resolveToApp('**/*.scss'), // stylesheets
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')

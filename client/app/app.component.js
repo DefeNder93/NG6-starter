@@ -1,5 +1,6 @@
 import template from './app.html';
-import './app.styl';
+import './common/common.scss';
+import './app.scss';
 
 let appComponent = {
   template,
