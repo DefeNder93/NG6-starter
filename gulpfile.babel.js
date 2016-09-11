@@ -82,7 +82,7 @@ gulp.task('serve', () => {
     '/api'
   ];
   serve({
-    port: process.env.PORT || 3001,
+    port: process.env.PORT || 3002,
     open: false,
     server: {baseDir: root},
     middleware: [
