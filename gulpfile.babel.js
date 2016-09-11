@@ -16,6 +16,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
+import httpProxyMiddleware      from 'http-proxy-middleware';
 
 let root = 'client';
 
@@ -77,11 +78,20 @@ gulp.task('serve', () => {
 
   var compiler = webpack(config);
 
+  var endpoints = [
+    '/api'
+  ];
   serve({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     open: false,
     server: {baseDir: root},
     middleware: [
+      httpProxyMiddleware(endpoints, {
+        target: 'http://localhost:8080',
+        ws: true,
+        logLevel: 'error',
+        changeOrigin: true   // for vhosted sites, changes host header to match to target's host
+      }),
       historyApiFallback(),
       webpackDevMiddleware(compiler, {
         stats: {
